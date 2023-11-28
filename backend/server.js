@@ -1,16 +1,14 @@
 import express from "express";
 import bodyParser from "body-parser";
-
 import methodOverride from "method-override";
 import chalk from "chalk";
 import dotenv from "dotenv";
-import imageRoutes from "./routes/imageRoutes.js";
-import connectDB from "./config/db.js";
-
-//
-import mongoose from "mongoose";
 import upload from "./middlewares/uploadMiddleware.js";
+
+// db
+import mongoose from "mongoose";
 import Grid from "gridfs-stream";
+import connectDB from "./config/db.js";
 
 dotenv.config();
 
@@ -37,6 +35,26 @@ conn.once("open", () => {
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection("uploads");
 });
+
+app.listen(port, () =>
+  console.log(chalk.green(`Server started on port ${port}`))
+);
+
+//
+
+//
+
+//
+
+//
+
+//
+//
+//
+
+//
+//
+//
 
 // @route GET /
 // @desc Loads form
@@ -134,17 +152,3 @@ app.delete("/files/:id", (req, res) => {
     res.redirect("/");
   });
 });
-
-app.listen(port, () =>
-  console.log(chalk.green(`Server started on port ${port}`))
-);
-
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const path = require("path");
-// const crypto = require("crypto");
-// const mongoose = require("mongoose");
-// const multer = require("multer");
-// const GridFsStorage = require("multer-gridfs-storage");
-// const Grid = require("gridfs-stream");
-// const methodOverride = require("method-override");
