@@ -1,8 +1,8 @@
 import express from "express";
 import upload from "../middlewares/uploadMiddleware.js";
 import {
-  getAllFiles,
-  uploadFile,
+  getAllImages,
+  createImage,
   getAllFilesJson,
   getSingleFile,
   getImage,
@@ -11,11 +11,14 @@ import {
 
 const router = express.Router();
 
-router.get("/", getAllFiles);
-router.post("/upload", upload.single("file"), uploadFile);
+//image
+router.get("/", getAllImages);
+router.post("/upload", upload.single("file"), createImage);
+router.get("/image/:filename", getImage);
+
+//file
 router.get("/files", getAllFilesJson);
 router.get("/files/:filename", getSingleFile);
-router.get("/image/:filename", getImage);
 router.delete("/files/:id", deleteFile);
 
 export default router;
